@@ -7,12 +7,10 @@ public class Main {
         int attempts = 5;
         boolean pinOk = false;
 
-        // Цикл проверки PIN (до 5 попыток)
         while (attempts > 0 && !pinOk) {
             System.out.print("Введите PIN-код (4 цифры): ");
             int pin = sc.nextInt();
 
-            // Проверка, что PIN четырехзначный
             if (pin >= 1000 && pin <= 9999) {
                 if (pin == 1111) {
                     pinOk = true;
@@ -28,7 +26,6 @@ public class Main {
             }
         }
 
-        // Если PIN правильный - запускаем банкомат
         if (pinOk) {
             BankAccount bankAccount = new BankAccount(5000);
 
@@ -37,7 +34,8 @@ public class Main {
                 System.out.println("1. Проверить баланс");
                 System.out.println("2. Пополнить");
                 System.out.println("3. Снять");
-                System.out.println("4. Выход");
+                System.out.println("4. История операций");
+                System.out.println("5. Выход");
                 System.out.print("Выберите действие: ");
 
                 int choice = sc.nextInt();
@@ -57,6 +55,9 @@ public class Main {
                         bankAccount.withdraw(withdrawAmount);
                         break;
                     case 4:
+                        bankAccount.printHistory();
+                        break;
+                    case 5:
                         System.out.println("\nДо свидания!");
                         sc.close();
                         return;
