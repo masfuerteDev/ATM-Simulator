@@ -23,6 +23,7 @@ public class BankAccount {
         balance += amount;
         System.out.printf("Пополнено на %.2f руб. Новый баланс: %.2f руб.%n", amount, balance);
 
+        // Сохраняем операцию в историю
         Date now = new Date();
         Transaction transaction = new Transaction("Пополнение", amount, now, balance);
         transactions.add(transaction);
@@ -40,11 +41,13 @@ public class BankAccount {
         balance -= amount;
         System.out.printf("Снято %.2f руб. Остаток: %.2f руб.%n", amount, balance);
 
+        // Сохраняем операцию в историю
         Date now = new Date();
         Transaction transaction = new Transaction("Снятие", amount, now, balance);
         transactions.add(transaction);
     }
 
+    // Вывод истории операций
     public void printHistory() {
         if (transactions.isEmpty()) {
             System.out.println("История операций пуста.");

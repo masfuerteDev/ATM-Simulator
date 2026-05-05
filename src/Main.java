@@ -4,17 +4,20 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        User user = new User("Иван", 1111, 5000);
+
         int attempts = 5;
         boolean pinOk = false;
 
+        // 5 попыток ввода PIN
         while (attempts > 0 && !pinOk) {
             System.out.print("Введите PIN-код (4 цифры): ");
             int pin = sc.nextInt();
 
             if (pin >= 1000 && pin <= 9999) {
-                if (pin == 1111) {
+                if (pin == user.getPin()) {
                     pinOk = true;
-                    System.out.println("Здравствуйте, Пользователь!");
+                    System.out.println("Здравствуйте, " + user.getName() + "!");
                 } else {
                     attempts--;
                     if (attempts > 0) {
@@ -27,8 +30,9 @@ public class Main {
         }
 
         if (pinOk) {
-            BankAccount bankAccount = new BankAccount(5000);
+            BankAccount bankAccount = user.getAccount();
 
+            // Основной цикл работы банкомата
             while (true) {
                 System.out.println("\n===== БАНКОМАТ =====");
                 System.out.println("1. Проверить баланс");
@@ -58,7 +62,7 @@ public class Main {
                         bankAccount.printHistory();
                         break;
                     case 5:
-                        System.out.println("\nДо свидания!");
+                        System.out.println("\nДо свидания, " + user.getName() + "!");
                         sc.close();
                         return;
                     default:
