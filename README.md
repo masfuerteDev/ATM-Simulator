@@ -12,5 +12,8 @@
 ## Как запустить
 
 ```bash
+# Компиляция
 javac src/*.java
-java src/Main
+
+# Запуск
+cd src && java Main
