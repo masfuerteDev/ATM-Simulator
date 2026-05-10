@@ -13,4 +13,4 @@
 
 ```bash
 javac src/*.java
-java src/Main
+java src/model.Main
